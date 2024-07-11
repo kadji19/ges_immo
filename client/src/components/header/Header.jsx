@@ -18,7 +18,7 @@ const Header = () => {
         showCroix(); // Appel de showCroix pour basculer entre hamburger et croix
       };
   return (
-    <header>
+    <header className='header_client'>
         <div className="logo">
             <a href=""><img src={logo} alt=""/></a>
         </div>

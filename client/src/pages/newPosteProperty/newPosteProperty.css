@@ -1,0 +1,137 @@
+.newPostPage {
+    height: 80%;
+    display: flex;
+    background: #fff;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .newPostPage .formContainer {
+    /* flex: 3; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: #34425A;
+    width: 100%;
+    height: 95%;
+    
+    /* overflow: scroll; */
+  }
+
+  .centered-hr {
+    border: none;
+    height: 1px;
+    background-color: #B3B3B3;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .newPostPage .formContainer .wrapper {
+    width: 95%;
+    height: 90%;
+    /* border-top: #B3B3B3 1px ridge; */
+    /* margin: 30px 50px 100px 0px; */
+  }
+  
+  .newPostPage .formContainer .wrapper form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .newPostPage .formContainer .wrapper form .item {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
+  /*.newPostPage .formContainer .wrapper form .item label {
+    /* Empty block
+  } */
+  
+  .newPostPage .formContainer .wrapper form .item input {
+    /* background: #F0EFEF; */
+    outline: none;
+    padding: 15px;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    border: #B3B3B3 1px solid;
+  }
+  
+  .newPostPage .formContainer .wrapper form .item select {
+    /* background: #F0EFEF; */
+    outline: none;
+    padding: 15px;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    border: #B3B3B3 1px solid;
+  }
+  
+  .newPostPage .formContainer .wrapper form .item.description {
+    width: 100%;
+    height: 300px;
+  }
+
+  .newPostPage .formContainer .wrapper form .item.description .descrip{
+    width: 100%;
+    height: 85%;
+    outline: none;
+    border-radius: 5px;
+    border: #B3B3B3 1px solid;
+  }
+  
+  .newPostPage .formContainer .wrapper form .item.description .quill > .ql-container > .ql-editor {
+    height: 200px;
+    font-size: 16px;
+  }
+  
+  .newPostPage .formContainer .wrapper form .sendButton {
+    width: 30%;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    background-color: #0FB45F;
+    cursor: pointer;
+    color: #fff;
+    margin: 8px;
+  }
+  
+  .newPostPage .sideContainer {
+    flex: 2;
+    background-color: #fcf5f3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .newPostPage .sideContainer img {
+    width: 50%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  @media only screen and (max-width: 500px) {
+    .newPostPage .formContainer .wrapper form .item {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+
+      .newPostPage .formContainer .wrapper {
+        width: 90%;
+        height: 90%;
+        /* border-top: #B3B3B3 1px ridge; */
+        /* margin: 30px 50px 100px 0px; */
+      }
+
+
+}
+
+  
