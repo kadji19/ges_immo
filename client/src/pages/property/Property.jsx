@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { UserContext } from '../../context/UseContext';
 import { BiSearch, BiEdit, BiSolidTrash } from 'react-icons/bi'
 import "./property.css"
 import { Link } from 'react-router-dom'
+import NewPosteProperty from '../newPosteProperty/NewPosteProperty';
 const Property = () => {
+    const { isModalOpen, toggleModal } = useContext(UserContext);
+
   return (
     <div className="main--content">
         <div className="property_container">
@@ -12,7 +16,8 @@ const Property = () => {
                 <input type="text" placeholder='Search anything here...' />
                 <BiSearch className='icon'/>
             </div>
-            <button className="sendButton"><Link className='nav_link_dash' to='newposteproperty' > Ajouter une nouvelle propriété </Link></button>
+            <button className="sendButton" onClick={toggleModal}> Ajouter une nouvelle propriété </button>
+{/*             <button className="sendButton"><Link className='nav_link_dash' to='newposteproperty' > Ajouter une nouvelle propriété </Link></button> */}
         </div>
         <hr class="centered-hr"/>
         <div className="property_content">
@@ -51,8 +56,8 @@ const Property = () => {
                             </td>
                             <td>
                                 <div class="actions">
-                                <BiEdit className='icon'/>
-                                <BiSolidTrash className='icon'/>
+                                <BiEdit className='icon edit'/>
+                                <BiSolidTrash className='icon trash'/>
                                 </div>
                             </td>
                         </tr>
@@ -77,8 +82,8 @@ const Property = () => {
                             </td>
                             <td>
                                 <div class="actions">
-                                <BiEdit className='icon'/>
-                                <BiSolidTrash className='icon'/>
+                                <BiEdit className='icon edit'/>
+                                <BiSolidTrash className='icon trash'/>
                                 </div>
                             </td>
                         </tr>
@@ -102,9 +107,9 @@ const Property = () => {
                                 <span>Appartement</span>
                             </td>
                             <td>
-                                <div class="actions">
-                                <BiEdit className='icon'/>
-                                <BiSolidTrash className='icon'/>
+                            <div class="actions">
+                                <BiEdit className='icon edit'/>
+                                <BiSolidTrash className='icon trash'/>
                                 </div>
                             </td>
                         </tr>
@@ -128,9 +133,9 @@ const Property = () => {
                                 <span>Appartement</span>
                             </td>
                             <td>
-                                <div class="actions">
-                                <BiEdit className='icon'/>
-                                <BiSolidTrash className='icon'/>
+                            <div class="actions">
+                                <BiEdit className='icon edit'/>
+                                <BiSolidTrash className='icon trash'/>
                                 </div>
                             </td>
                         </tr>
@@ -154,9 +159,9 @@ const Property = () => {
                                 <span>Appartement</span>
                             </td>
                             <td>
-                                <div class="actions">
-                                <BiEdit className='icon'/>
-                                <BiSolidTrash className='icon'/>
+                            <div class="actions">
+                                <BiEdit className='icon edit'/>
+                                <BiSolidTrash className='icon trash'/>
                                 </div>
                             </td>
                         </tr>
@@ -167,6 +172,7 @@ const Property = () => {
 
             </div>
         </div>
+        {isModalOpen && <NewPosteProperty/> }
         </div>
     </div>
   )

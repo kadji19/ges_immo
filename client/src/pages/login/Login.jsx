@@ -27,7 +27,7 @@ const Login = () => {
       localStorage.setItem('token', response.data.token);
       const role = JSON.parse(atob(response.data.token.split('.')[1])).role;
       if (role === 'Proprietaire') {
-        navigate('/dashboard');
+        navigate('/dashboard/property');
       } else {
         navigate('/');
       }

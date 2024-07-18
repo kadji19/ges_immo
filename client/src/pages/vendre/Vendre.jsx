@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './vendre.css'
-import 'boxicons'
-import propertie1 from '../../asset/image (1).jpeg'
-import propertie2 from '../../asset/image(2).jpeg'
-import propertie3 from '../../asset/image(3).jpeg'
+import { BiMap, BiBed, BiBath } from "react-icons/bi";
+import axios from 'axios';
 
 const Vendre = () => {
+    const [properties, setProperties] = useState([]);
+
+    useEffect(() => {
+        const fetchProperties = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/api/properties/get');
+                // Parse images from string to array
+                const propertiesWithParsedImages = response.data.map(property => ({
+                    ...property,
+                    images: JSON.parse(property.images)
+                }));
+                setProperties(propertiesWithParsedImages);
+            } catch (error) {
+                console.error("Erreur lors de la récupération des propriétés!", error);
+            }
+        };
+        fetchProperties();
+    }, []);
+
   return (
     <div className='vendre'>
         <section className='banner_vendre'>
@@ -40,166 +57,39 @@ const Vendre = () => {
                 </div>
         </section>
         <section className='home_container_propreties'>
-            <div class="home_propreties_card">
+            {properties.map((propertie)=>(
+                <div key={propertie.id_propriete} class="home_propreties_card">
                 <div class="propreties_card_image">
-                    <img src={propertie1} alt=""/>
+                    <img src={propertie.images[ 0]} alt=""/>
                 </div>
-                <div class="propreties_card_text">
-                    <div className='propreties_card_text_des'>
-                        <span>Apprenez des experts du secteur et améliorez vos compétences</span>
-                        <div className="propreties_card_text_address">
-                            <box-icon name='map' type='solid' color='#0fb45f'></box-icon>
-                            <span className="address">Seaside Serenity Villa</span>
+                <div className="propreties_card_text">
+                            <div className='propreties_card_text_des'>
+                                <span>{propertie.titre} </span>
+                                <div className="propreties_card_text_address">
+                                <BiMap color='#0fb45f' className='icon_prperty'/>
+                                    <span className="address">{propertie.adresse} </span>
+                                </div>
+                            </div>
+                            <div className="propreties_card_text_nbrroom">
+                                <div className="card_text_nbrroom_bb">
+                                <BiBed color='#5B5B5B' className='icon_prperty'/>
+                                    <span>{propertie.nbr_chambre}-Pièce</span>
+                                </div>
+                                <div className="card_text_nbrroom_bb">
+                                <BiBath color='#5B5B5B' className='icon_prperty'/>
+                                    <span>{propertie.nbr_toilette}-salle de bain</span>
+                                </div>
+                            </div>
+                            <div className="propreties_card_text_pd">
+                                <div className="card_text_pd_price">
+                                    <span>Prix</span>
+                                    <span className="text_price">{propertie.prix}{propertie.type_offre === 'Louer' ? '/mois' : ''}</span>
+                                </div>
+                                <button className='search_form_btn'>details</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="propreties_card_text_nbrroom">
-                        <div className="card_text_nbrroom_bb">
-                            <box-icon type='solid' name='bed'></box-icon>
-                            <span>4-Bedroom</span>
-                        </div>
-                        <div className="card_text_nbrroom_bb">
-                            <box-icon type='solid' name='bath'></box-icon>
-                            <span>3-Bathroom</span>
-                        </div>
-                    </div>
-                    <div className="propreties_card_text_pd">
-                        <div className="card_text_pd_price">
-                            <span>Prix</span>
-                            <span className="text_price">25000</span>
-                        </div>
-                        <button className='search_form_btn'>details</button>
-                    </div>
-                    
-                </div>
             </div>
-            <div class="home_propreties_card">
-                <div class="propreties_card_image">
-                    <img src={propertie2} alt=""/>
-                </div>
-                <div class="propreties_card_text">
-                    <div className='propreties_card_text_des'>
-                        <span>Apprenez des experts du secteur et améliorez vos compétences</span>
-                        <div className="propreties_card_text_address">
-                            <box-icon name='map' type='solid' color='#0fb45f'></box-icon>
-                            <span className="address">Seaside Serenity Villa</span>
-                        </div>
-                    </div>
-                    <div className="propreties_card_text_nbrroom">
-                        <div className="card_text_nbrroom_bb">
-                            <box-icon type='solid' name='bed'></box-icon>
-                            <span>4-Bedroom</span>
-                        </div>
-                        <div className="card_text_nbrroom_bb">
-                            <box-icon type='solid' name='bath'></box-icon>
-                            <span>3-Bathroom</span>
-                        </div>
-                    </div>
-                    <div className="propreties_card_text_pd">
-                        <div className="card_text_pd_price">
-                            <span>Prix</span>
-                            <span className="text_price">25000</span>
-                        </div>
-                        <button className='search_form_btn'>details</button>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="home_propreties_card">
-                <div class="propreties_card_image">
-                    <img src={propertie3} alt=""/>
-                </div>
-                <div class="propreties_card_text">
-                    <div className='propreties_card_text_des'>
-                        <span>Apprenez des experts du secteur et améliorez vos compétences</span>
-                        <div className="propreties_card_text_address">
-                            <box-icon name='map' type='solid' color='#0fb45f'></box-icon>
-                            <span className="address">Seaside Serenity Villa</span>
-                        </div>
-                    </div>
-                    <div className="propreties_card_text_nbrroom">
-                        <div className="card_text_nbrroom_bb">
-                            <box-icon type='solid' name='bed'></box-icon>
-                            <span>4-Bedroom</span>
-                        </div>
-                        <div className="card_text_nbrroom_bb">
-                            <box-icon type='solid' name='bath'></box-icon>
-                            <span>3-Bathroom</span>
-                        </div>
-                    </div>
-                    <div className="propreties_card_text_pd">
-                        <div className="card_text_pd_price">
-                            <span>Prix</span>
-                            <span className="text_price">25000</span>
-                        </div>
-                        <button className='search_form_btn'>details</button>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="home_propreties_card">
-                <div class="propreties_card_image">
-                    <img src={propertie1} alt=""/>
-                </div>
-                <div class="propreties_card_text">
-                    <div className='propreties_card_text_des'>
-                        <span>Apprenez des experts du secteur et améliorez vos compétences</span>
-                        <div className="propreties_card_text_address">
-                            <box-icon name='map' type='solid' color='#0fb45f'></box-icon>
-                            <span className="address">Seaside Serenity Villa</span>
-                        </div>
-                    </div>
-                    <div className="propreties_card_text_nbrroom">
-                        <div className="card_text_nbrroom_bb">
-                            <box-icon type='solid' name='bed'></box-icon>
-                            <span>4-Bedroom</span>
-                        </div>
-                        <div className="card_text_nbrroom_bb">
-                            <box-icon type='solid' name='bath'></box-icon>
-                            <span>3-Bathroom</span>
-                        </div>
-                    </div>
-                    <div className="propreties_card_text_pd">
-                        <div className="card_text_pd_price">
-                            <span>Prix</span>
-                            <span className="text_price">25000</span>
-                        </div>
-                        <button className='search_form_btn'>details</button>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="home_propreties_card">
-                <div class="propreties_card_image">
-                    <img src={propertie1} alt=""/>
-                </div>
-                <div class="propreties_card_text">
-                    <div className='propreties_card_text_des'>
-                        <span>Apprenez des experts du secteur et améliorez vos compétences</span>
-                        <div className="propreties_card_text_address">
-                            <box-icon name='map' type='solid' color='#0fb45f'></box-icon>
-                            <span className="address">Seaside Serenity Villa</span>
-                        </div>
-                    </div>
-                    <div className="propreties_card_text_nbrroom">
-                        <div className="card_text_nbrroom_bb">
-                            <box-icon type='solid' name='bed'></box-icon>
-                            <span>4-Bedroom</span>
-                        </div>
-                        <div className="card_text_nbrroom_bb">
-                            <box-icon type='solid' name='bath'></box-icon>
-                            <span>3-Bathroom</span>
-                        </div>
-                    </div>
-                    <div className="propreties_card_text_pd">
-                        <div className="card_text_pd_price">
-                            <span>Prix</span>
-                            <span className="text_price">25000</span>
-                        </div>
-                        <button className='search_form_btn'>details</button>
-                    </div>
-                    
-                </div>
-            </div>
+            ))}
         </section>
     </div>
   )

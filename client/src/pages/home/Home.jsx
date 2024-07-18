@@ -1,16 +1,27 @@
 import React from 'react';
 import './home.css';
+import { BiMap, BiBed, BiBath } from "react-icons/bi";
 import illustration1 from '../../asset/illustration1.png';
 import illustration2 from '../../asset/illustration2.png';
 import illustration3 from '../../asset/illustration3.png';
 import propertie1 from '../../asset/image (1).jpeg';
 import propertie2 from '../../asset/image(2).jpeg';
 import propertie3 from '../../asset/image(3).jpeg';
+import LeftArrow from "../../asset/left-arrow.svg"
+import RightArrow from "../../asset/right-arrow.svg"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 const Home = () => {
+
+    const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
+        <img src={LeftArrow} alt="prevArrow" {...props} />
+      );
+    
+      const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
+        <img src={RightArrow} alt="nextArrow" {...props} />
+      );
     const settings = {
         dots: true,
         speed: 500,
@@ -21,20 +32,8 @@ const Home = () => {
         autoplaySpeed: 1000,
         lazyLoad: true,
         focusOnSelect: true,
-        nextArrow: (
-          <div>
-            <div className="next-slick-arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" stroke="black" height="24" viewBox="0 -960 960 960" width="24"><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z"/></svg>
-            </div>
-          </div>
-        ),
-        prevArrow: (
-          <div>
-            <div className="next-slick-arrow rotate-180">
-              <svg xmlns="http://www.w3.org/2000/svg" stroke="black" height="24" viewBox="0 -960 960 960" width="24"><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z"/></svg>
-            </div>
-          </div>
-        ),
+        prevArrow: <SlickArrowLeft />,
+        nextArrow: <SlickArrowRight />,
         responsive: [
           {
             breakpoint: 1024,
@@ -43,7 +42,7 @@ const Home = () => {
             }
           },
           {
-            breakpoint: 600,
+            breakpoint: 767,
             settings: {
              slidesToShow: 1,
             }
@@ -91,7 +90,7 @@ const Home = () => {
             </section>
 
             <section className="home_illustration" data-aos="zoom-in-up">
-                <div className="card">
+                <div className="card_home">
                     <div className="card_image">
                         <img src={illustration1} alt="" />
                     </div>
@@ -102,7 +101,7 @@ const Home = () => {
                         <p>Accédez à votre formation 100% en ligne au bureau, à la maison, en ville, à la montagne... Partout !</p>
                     </div>
                 </div>
-                <div className="card">
+                <div className="card_home">
                     <div className="card_image">
                         <img src={illustration2} alt="" />
                     </div>
@@ -113,7 +112,7 @@ const Home = () => {
                         <p>Accédez à votre formation 100% en ligne au bureau, à la maison, en ville, à la montagne... Partout !</p>
                     </div>
                 </div>
-                <div className="card">
+                <div className="card_home">
                     <div className="card_image">
                         <img src={illustration3} alt="" />
                     </div>
@@ -136,18 +135,18 @@ const Home = () => {
                             <div className='propreties_card_text_des'>
                                 <span>Apprenez des experts du secteur et améliorez vos compétences</span>
                                 <div className="propreties_card_text_address">
-                                    <box-icon name='map' type='solid' color='#0fb45f'></box-icon>
+                                <BiMap color='#0fb45f' className='icon_prperty'/>
                                     <span className="address">Seaside Serenity Villa</span>
                                 </div>
                             </div>
                             <div className="propreties_card_text_nbrroom">
                                 <div className="card_text_nbrroom_bb">
-                                    <box-icon type='solid' name='bed'></box-icon>
-                                    <span>4-Bedroom</span>
+                                <BiBed color='#5B5B5B' className='icon_prperty'/>
+                                    <span>4-Pièce</span>
                                 </div>
                                 <div className="card_text_nbrroom_bb">
-                                    <box-icon type='solid' name='bath'></box-icon>
-                                    <span>3-Bathroom</span>
+                                <BiBath color='#5B5B5B' className='icon_prperty'/>
+                                    <span>3-salle de bain</span>
                                 </div>
                             </div>
                             <div className="propreties_card_text_pd">
@@ -167,18 +166,18 @@ const Home = () => {
                             <div className='propreties_card_text_des'>
                                 <span>Apprenez des experts du secteur et améliorez vos compétences</span>
                                 <div className="propreties_card_text_address">
-                                    <box-icon name='map' type='solid' color='#0fb45f'></box-icon>
+                                    <BiMap color='#0fb45f' className='icon_prperty'/>
                                     <span className="address">Seaside Serenity Villa</span>
                                 </div>
                             </div>
-                            <div className="propreties_card_text_nbrroom">
+                             <div className="propreties_card_text_nbrroom">
                                 <div className="card_text_nbrroom_bb">
-                                    <box-icon type='solid' name='bed'></box-icon>
-                                    <span>4-Bedroom</span>
+                                    <BiBed color='#5B5B5B' className='icon_prperty'/>
+                                    <span>4-Pièce</span>
                                 </div>
                                 <div className="card_text_nbrroom_bb">
-                                    <box-icon type='solid' name='bath'></box-icon>
-                                    <span>3-Bathroom</span>
+                                    <BiBath color='#5B5B5B' className='icon_prperty'/>
+                                    <span>3-salle de bain</span>
                                 </div>
                             </div>
                             <div className="propreties_card_text_pd">
@@ -198,18 +197,18 @@ const Home = () => {
                             <div className='propreties_card_text_des'>
                                 <span>Apprenez des experts du secteur et améliorez vos compétences</span>
                                 <div className="propreties_card_text_address">
-                                    <box-icon name='map' type='solid' color='#0fb45f'></box-icon>
+                                <BiMap color='#0fb45f' className='icon_prperty'/>
                                     <span className="address">Seaside Serenity Villa</span>
                                 </div>
                             </div>
                             <div className="propreties_card_text_nbrroom">
                                 <div className="card_text_nbrroom_bb">
-                                    <box-icon type='solid' name='bed'></box-icon>
-                                    <span>4-Bedroom</span>
+                                    <BiBed color='#5B5B5B' className='icon_prperty'/>
+                                    <span>4-Pièce</span>
                                 </div>
                                 <div className="card_text_nbrroom_bb">
-                                    <box-icon type='solid' name='bath'></box-icon>
-                                    <span>3-Bathroom</span>
+                                    <BiBath color='#5B5B5B' className='icon_prperty'/>
+                                    <span>3-salle de bain</span>
                                 </div>
                             </div>
                             <div className="propreties_card_text_pd">

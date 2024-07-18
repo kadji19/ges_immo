@@ -2,6 +2,7 @@ import React from 'react'
 import { BiHome, BiBookAlt, BiMessage, BiSolidReport, BiStats, BiTask, BiHelpCircle, } from 'react-icons/bi';
 import './sidebar.css'
 import logo from '../../asset/logo.png'
+import profile from '../../asset/3.jpeg'
 import { Link } from 'react-router-dom';
 const Sidebar = () => {
   return (
@@ -14,7 +15,9 @@ const Sidebar = () => {
     
     <div class="side-content">
         <div class="profile">
-            <div class="profile-img bg-img"></div>
+            <div class="profile-img bg-img">
+                <img src={profile} alt="profile" />
+            </div>
             <h4>David Green</h4>
             <small>Art Director</small>
         </div>
@@ -22,7 +25,7 @@ const Sidebar = () => {
         <div class="side-menu">
             <ul>
                 <li>
-                   <Link className='nav_link_dash active' to='homedashboard'>
+                   <Link className='nav_link_dash active' to=''>
                         <BiHome classeName='icon'/>
                         <small>Dashboard</small>
                     </Link>

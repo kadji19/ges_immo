@@ -69,3 +69,11 @@
     gap: 30px;
     font-size: 22px;
   }
+
+  .edit{
+    color: #0FB45F;
+  }
+
+  .trash{
+    color: red;
+  }
