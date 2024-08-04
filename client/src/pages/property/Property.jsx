@@ -1,11 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UseContext';
 import { BiSearch, BiEdit, BiSolidTrash } from 'react-icons/bi'
 import "./property.css"
-import { Link } from 'react-router-dom'
 import NewPosteProperty from '../newPosteProperty/NewPosteProperty';
+import axios from 'axios';
 const Property = () => {
-    const { isModalOpen, toggleModal } = useContext(UserContext);
+    const { isModalOpen, toggleModal, userId  } = useContext(UserContext);
+    const [properties, setProperties] = useState([]);
+
+    useEffect(() => {
+        const fetchProperties = async () => {
+            console.log(userId)
+            try {
+                const response = await axios.get(`http://localhost:5000/api/properties/owner/${userId}`);
+                setProperties(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchProperties();
+    }, [userId]);
 
   return (
     <div className="main--content">
@@ -35,137 +49,34 @@ const Property = () => {
                         </tr>
                     </thead>
                     <tbody>
+                    {properties.map((propertie) => (
                         <tr>
-                            <td>
-                                <div class="client">
-                                
-                                    <div class="client-info">
-                                        <h4>Seaside Serenity Villa</h4>
-                                        <small><span>2 bed</span> & <span>1bath</span></small>
-                                    </div>
+                        <td key={propertie.id_propriete}>
+                            <div class="client">
+                            
+                                <div class="client-info">
+                                    <h4>{propertie.titre}</h4>
+                                    <small><span>{propertie.nbr_chambre} pièce</span> & <span>{propertie.nbr_toilette} salle de bain</span></small>
                                 </div>
-                            </td>
-                            <td>
-                                25000Fcfa
-                            </td>
-                            <td>
-                                <span>Seaside Serenity Villa</span>
-                            </td>
-                            <td>
-                                <span>Appartement</span>
-                            </td>
-                            <td>
-                                <div class="actions">
-                                <BiEdit className='icon edit'/>
-                                <BiSolidTrash className='icon trash'/>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="client">
-                                
-                                    <div class="client-info">
-                                        <h4>Seaside Serenity Villa</h4>
-                                        <small><span>2 bed</span> & <span>1bath</span></small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                25000Fcfa
-                            </td>
-                            <td>
-                                <span>Seaside Serenity Villa</span>
-                            </td>
-                            <td>
-                                <span>Appartement</span>
-                            </td>
-                            <td>
-                                <div class="actions">
-                                <BiEdit className='icon edit'/>
-                                <BiSolidTrash className='icon trash'/>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="client">
-                                
-                                    <div class="client-info">
-                                        <h4>Seaside Serenity Villa</h4>
-                                        <small><span>2 bed</span> & <span>1bath</span></small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                25000Fcfa
-                            </td>
-                            <td>
-                                <span>Seaside Serenity Villa</span>
-                            </td>
-                            <td>
-                                <span>Appartement</span>
-                            </td>
-                            <td>
+                            </div>
+                        </td>
+                        <td>
+                        {propertie.prix}{propertie.type_offre === 'Louer' ? '/mois' : ''}
+                        </td>
+                        <td>
+                            <span>{propertie.adresse}</span>
+                        </td>
+                        <td>
+                            <span>{propertie.libelle}</span>
+                        </td>
+                        <td>
                             <div class="actions">
-                                <BiEdit className='icon edit'/>
-                                <BiSolidTrash className='icon trash'/>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="client">
-                                
-                                    <div class="client-info">
-                                        <h4>Seaside Serenity Villa</h4>
-                                        <small><span>2 bed</span> & <span>1bath</span></small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                25000Fcfa
-                            </td>
-                            <td>
-                                <span>Seaside Serenity Villa</span>
-                            </td>
-                            <td>
-                                <span>Appartement</span>
-                            </td>
-                            <td>
-                            <div class="actions">
-                                <BiEdit className='icon edit'/>
-                                <BiSolidTrash className='icon trash'/>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="client">
-                                
-                                    <div class="client-info">
-                                        <h4>Seaside Serenity Villa</h4>
-                                        <small><span>2 bed</span> & <span>1bath</span></small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                25000Fcfa
-                            </td>
-                            <td>
-                                <span>Seaside Serenity Villa</span>
-                            </td>
-                            <td>
-                                <span>Appartement</span>
-                            </td>
-                            <td>
-                            <div class="actions">
-                                <BiEdit className='icon edit'/>
-                                <BiSolidTrash className='icon trash'/>
-                                </div>
-                            </td>
-                        </tr>
-                        
+                            <BiEdit className='icon edit'/>
+                            <BiSolidTrash className='icon trash'/>
+                            </div>
+                        </td>
+                    </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>

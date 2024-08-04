@@ -1,0 +1,88 @@
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow:auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal_content {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    /* max-width: 500px; */
+    border-radius: 5px;
+  }
+  
+  .close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    float: right;
+/*     position: absolute;
+    left: 80%; */
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .modal_content .candidat_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    height: 55vh;
+  }
+
+  .modal_content .item{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .modal_content .item_input{
+    background: #90ddc01a;
+    outline: none;
+    padding: 15px;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    border: #B3B3B3 1px solid;
+  }
+
+  .modal_content .item_descrip{
+    height: 100px;
+    background: #90ddc01a;
+    outline: none;
+    padding: 15px;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    border: #B3B3B3 1px solid;
+  }
+
+  .cand_form_btn{
+    background-color: #0FB45F;
+    border: none;
+    width: 80%;
+    padding: 12px;
+    font-family: 'Poppins';
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 17px;
+}
+
+  

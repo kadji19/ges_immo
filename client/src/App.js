@@ -4,6 +4,8 @@ import Register from './pages/register/Register'
 import Login from './pages/login/Login'
 import Dashboard from './pages/dashboard2/Dashboard'
 import { UserProvider } from './context/UseContext';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (

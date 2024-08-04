@@ -1,0 +1,240 @@
+.property_detail {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.property_detail_images {
+    width: 90%;
+    height: 100vh;
+    margin: 0 auto;
+    border: 1px solid #c9c9c97e;
+    border-radius: 5px;
+   /*  background-color: #1954d3; */
+}
+
+.slider{
+    width: 95%;
+    height: 78%;
+    margin: 0 auto;
+}
+
+
+/* .slider_div {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background: #ac2424;
+
+} */
+
+.img-body img {
+    display: flex;
+    margin: 0 auto;
+    /* height: 40vh; */
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+/*     box-shadow: 0px 0px 100px 10px rgba(245, 245, 245, 0.182), 
+                0px 0px 100px 10px rgba(0, 0, 0, 0.182); */
+}
+
+.img-body {
+    width: 100%;
+    height: 75vh;
+    /* aspect-ratio: 1/1; */
+    display: inline-block;
+}
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+    height: 80vh;
+    border-color: white;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+/* .thumb-wrapper {
+    width: 100px;
+    aspect-ratio: 1/1;
+} */
+
+
+.thumb-wrapper {
+    background: #f4f4f4;
+    display: flex;
+    width: 100%;
+    height: 15%;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* margin-top: 30px; */
+}
+
+.thumb-wrapper > div {
+    width: 12%;
+    height: 98%;
+/*     max-height: 200px;
+    aspect-ratio: 1/1; */
+    overflow: hidden;
+    transition: all .1s;
+}
+
+/* .thumb-wrapper > div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+} */
+
+.thumb-wrapper > div:hover, .thumb-wrapper > div.active {
+    border: 3px solid rgba(216, 35, 35, 0.732);
+    max-height: calc(200px - 6px);
+}
+.thumb-wrapper > div img {
+    width: 100%;
+    height: 100%;
+    /* object-position: center 0; */
+    object-fit: cover;
+}
+
+.property_detail_info {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.property_detail_info_detail {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+    border: 1px solid #c9c9c97e;
+    border-radius: 5px;
+}
+
+.info_detail_title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.property_detail_description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: fit-content;
+}
+
+.property_detail_info_essentiel {
+    width: 100%;
+    height: 12vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid #c9c9c97e;
+    padding: 5px 0;
+}
+
+.info_essentiel_nbrroom_bb {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+    padding: 0 10px;
+}
+
+.info_essentiel_price {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+    padding: 0 10px;
+    border-left: 1px solid #c9c9c97e;
+}
+
+.property_detail_info_essentiel span {
+    display: flex;
+    align-items: center;
+}
+
+.property_detail_info_form {
+    width: 33%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    /* gap: 10px; */
+    border: 1px solid #c9c9c97e;
+    border-radius: 5px;
+}
+
+.info_form1{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: #eaeff5b4;
+    /* border-left: 3px solid #0c68f17e; */
+    
+}
+
+.info_form2{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* border-left: 3px solid #0c68f17e; */
+}
+
+.property_detail_info span{
+color: #424242ea;
+font-size: 18px;
+font-family: Urbanist;
+
+}
+
+.info_form_span1{
+font-weight: bold;
+}
+
+.type_offre{
+width: 20%;
+height: 8vh;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #0fb45f52;
+border-radius: 5px;
+}
+
+.cand_btn{
+    justify-content: center;
+}
+
+.info_form_btn{
+    width: 80%;
+    height: 80%;
+    border-radius: 5px;
+    border: none;
+    background: #0FB45F;
+    color: #f4f4f4;
+    font-size: 17px;
+}

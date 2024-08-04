@@ -20,7 +20,7 @@ const Header = () => {
   return (
     <header className='header_client'>
         <div className="logo">
-            <a href=""><img src={logo} alt=""/></a>
+            <a href="/"><img src={logo} alt=""/></a>
         </div>
         <div className='menu_icon' onClick={toggleNavbar}>
                 {croix ? (
@@ -39,8 +39,8 @@ const Header = () => {
         <div className="menu" ref={navRef}>
             <ul class="menu_nav">
                 <li className="nav_item"> <Link className='nav_link' to='/'>Accueil</Link> </li>
-                <li className="nav_item"> <Link className='nav_link' to='/vendre'>A vendre</Link> </li>
-                <li className="nav_item"> <Link className='nav_link' to='/contact'>Contact</Link> </li>
+                <li className="nav_item"> <Link className='nav_link' to='/vendre'>Propriétés</Link> </li>
+                <li className="nav_item"> <Link className='nav_link' to='/propertydetail'>A propos</Link> </li>
             </ul>
             <div class="btn_header">
                 <button className="btn_inscrip"><Link className='nav_link' to='/register'>Inscription</Link></button>

@@ -4,6 +4,8 @@ import Header from '../header/Header'
 /* import Footer from '../Footer/Footer'*/
 import Home from '../../pages/home/Home' 
 import Vendre from '../../pages/vendre/Vendre'
+import PropertyDetail from '../../pages/propertyDetail/PropertyDetail'
+import './layout.css'
 
 const layout = () => {
   return (
@@ -13,6 +15,7 @@ const layout = () => {
         <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/vendre' element={<Vendre/>} />
+            <Route path='/propertydetail/:id' element={<PropertyDetail/>} />
         </Routes>
         </div>
       {/*   <Footer/> */}

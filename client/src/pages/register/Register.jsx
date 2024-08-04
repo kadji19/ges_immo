@@ -8,16 +8,16 @@ import compte_img2 from "../../asset/compte_img2.jpg";
 const Register = () => {
   const [formData, setFormData] = useState({
     nom: "",
-    prenom: "",  // Ajouter le champ prénom
+    prenom: "",
     email: "",
     motDePasse: "",
     contact: "",
-    role: "Client" // Rôle par défaut
+    role: "Client"
   });
 
   const navigate = useNavigate();
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -25,7 +25,7 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:5000/api/users/register", formData);
@@ -99,7 +99,7 @@ const Register = () => {
               </div>
               <div className="input_reg">
                 <label>Rôle</label>
-                <select name="role" onChange={handleChange}>
+                <select className="input_add" name="role" onChange={handleChange}>
                   <option value="Locataire">Client</option>
                   <option value="Proprietaire">Propriétaire</option>
                 </select>
@@ -137,7 +137,7 @@ const Register = () => {
             <button type="submit" className="register_btn">S'inscrire</button>
             <div className="ver_login">
               <span>ou</span>
-              <p>Déjà un compte? <a href=""><strong>Connectez-vous.</strong></a> </p>
+              <p>Déjà un compte? <a href="/login"><strong>Connectez-vous.</strong></a> </p>
             </div>
           </div>
         </form>

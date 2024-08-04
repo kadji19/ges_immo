@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './home.css';
 import { BiMap, BiBed, BiBath } from "react-icons/bi";
 import illustration1 from '../../asset/illustration1.png';
 import illustration2 from '../../asset/illustration2.png';
 import illustration3 from '../../asset/illustration3.png';
-import propertie1 from '../../asset/image (1).jpeg';
-import propertie2 from '../../asset/image(2).jpeg';
-import propertie3 from '../../asset/image(3).jpeg';
 import LeftArrow from "../../asset/left-arrow.svg"
 import RightArrow from "../../asset/right-arrow.svg"
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import Slider from "react-slick";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+    const [properties, setProperties] = useState([]);
+    const navigate = useNavigate();
 
     const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
         <img src={LeftArrow} alt="prevArrow" {...props} />
@@ -49,6 +49,27 @@ const Home = () => {
            }
         ]
       };
+
+      useEffect(() => {
+        const fetchProperties = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/api/properties/limit');
+                // Parse images from string to array
+                const propertiesWithParsedImages = response.data.map(property => ({
+                    ...property,
+                    images: JSON.parse(property.images)
+                }));
+                setProperties(propertiesWithParsedImages);
+            } catch (error) {
+                console.error("Erreur lors de la récupération des propriétés!", error);
+            }
+        };
+        fetchProperties();
+    }, []);
+
+    const handleDetailsClick = (id) => {
+        navigate(`/propertydetail/${id}`);
+    };
     
     return (
         <div >
@@ -95,10 +116,10 @@ const Home = () => {
                         <img src={illustration1} alt="" />
                     </div>
                     <div className="title">
-                        <h3>Apprenez où que vous soyez</h3>
+                        <h3>Acheter une Maison</h3>
                     </div>
                     <div className="des">
-                        <p>Accédez à votre formation 100% en ligne au bureau, à la maison, en ville, à la montagne... Partout !</p>
+                        <p>Découvrez notre sélection de maisons à vendre. Trouvez la maison de vos rêves et faites de votre prochain achat immobilier une expérience agréable et sans stress grâce à nos outils et services.</p>
                     </div>
                 </div>
                 <div className="card_home">
@@ -106,10 +127,10 @@ const Home = () => {
                         <img src={illustration2} alt="" />
                     </div>
                     <div className="title">
-                        <h3>Apprenez où que vous soyez</h3>
+                        <h3>Louer une Maison</h3>
                     </div>
                     <div className="des">
-                        <p>Accédez à votre formation 100% en ligne au bureau, à la maison, en ville, à la montagne... Partout !</p>
+                        <p>Explorez notre gamme de maisons à louer. Trouvez la location parfaite pour vous et profitez d'une expérience de recherche simple et efficace grâce à notre plateforme conviviale.</p>
                     </div>
                 </div>
                 <div className="card_home">
@@ -117,48 +138,50 @@ const Home = () => {
                         <img src={illustration3} alt="" />
                     </div>
                     <div className="title">
-                        <h3>Apprenez où que vous soyez</h3>
+                        <h3>Vendre une Maison</h3>
                     </div>
                     <div className="des">
-                        <p>Accédez à votre formation 100% en ligne au bureau, à la maison, en ville, à la montagne... Partout !</p>
+                        <p>Mettez votre maison en vente facilement. Utilisez notre plateforme pour atteindre un large public d'acheteurs potentiels et vendez votre propriété rapidement et en toute sérénité</p>
                     </div>
                 </div>
             </section>
 
             <section className='home_container_propreties_slider'>
                 <Slider className='home_container_propreties_s' {...settings}>
-                    <div className="home_propreties_card">
-                        <div className="propreties_card_image">
-                            <img src={propertie1} alt="" />
-                        </div>
-                        <div className="propreties_card_text">
+                {properties.map((propertie)=>(
+                <div key={propertie.id_propriete} class="home_propreties_card">
+                <div class="propreties_card_image">
+                    <img src={propertie.images[ 0]} alt=""/>
+                </div>
+                <div className="propreties_card_text">
                             <div className='propreties_card_text_des'>
-                                <span>Apprenez des experts du secteur et améliorez vos compétences</span>
+                                <span>{propertie.titre} </span>
                                 <div className="propreties_card_text_address">
                                 <BiMap color='#0fb45f' className='icon_prperty'/>
-                                    <span className="address">Seaside Serenity Villa</span>
+                                    <span className="address">{propertie.adresse} </span>
                                 </div>
                             </div>
                             <div className="propreties_card_text_nbrroom">
                                 <div className="card_text_nbrroom_bb">
                                 <BiBed color='#5B5B5B' className='icon_prperty'/>
-                                    <span>4-Pièce</span>
+                                    <span>{propertie.nbr_chambre}-Pièce</span>
                                 </div>
                                 <div className="card_text_nbrroom_bb">
                                 <BiBath color='#5B5B5B' className='icon_prperty'/>
-                                    <span>3-salle de bain</span>
+                                    <span>{propertie.nbr_toilette}-salle de bain</span>
                                 </div>
                             </div>
                             <div className="propreties_card_text_pd">
                                 <div className="card_text_pd_price">
                                     <span>Prix</span>
-                                    <span className="text_price">25000</span>
+                                    <span className="text_price">{propertie.prix}{propertie.type_offre === 'Louer' ? '/mois' : ''}</span>
                                 </div>
-                                <button className='search_form_btn'>details</button>
+                                <button className='search_form_btn' onClick={() => handleDetailsClick(propertie.id_propriete)}>Détails</button>
                             </div>
                         </div>
-                    </div>
-                    <div className="home_propreties_card">
+            </div>
+            ))}
+{/*                     <div className="home_propreties_card">
                         <div className="propreties_card_image">
                             <img src={propertie2} alt="" />
                         </div>
@@ -219,7 +242,7 @@ const Home = () => {
                                 <button className='search_form_btn'>details</button>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </Slider>
             </section>
         </div>

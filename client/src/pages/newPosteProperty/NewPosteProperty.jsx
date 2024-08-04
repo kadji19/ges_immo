@@ -5,7 +5,7 @@ import './newPosteProperty.css';
 import UploadWidget from '../../components/uploadWidget/UploadWidget';
 
 const NewPosteProperty = () => {
-    const { toggleModal, proprietaireId } = useContext(UserContext);
+    const { toggleModal, userId  } = useContext(UserContext);
     const [images, setImages] = useState([]);
     const [ville, setVille] = useState([]); 
     const [types, setTypes] = useState([]);
@@ -23,7 +23,7 @@ const NewPosteProperty = () => {
         images: [],
         id_cat_prop: "",
         id_ville: "",
-        proprietaire_id: proprietaireId,
+        proprietaire_id: userId ,
     });
 
     // Fonction pour obtenir les villes depuis le backend
